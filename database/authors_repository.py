@@ -12,5 +12,3 @@ def get_all():
             'name': author[1]
         })
     return list
-
-print(get_all())

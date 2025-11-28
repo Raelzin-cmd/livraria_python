@@ -1,9 +1,10 @@
 from flask import Flask
-from controllers import authors
+from controllers import authors, books
 
 app = Flask(__name__)
 
 # Rota para lista autores       http://localhost:3000/author
 app.add_url_rule('/author', view_func=authors.authors)
-
+# Rota para lista livros       http://localhost:3000/books
+app.add_url_rule('/book', view_func=books.books)
 app.run(port=3000, debug=True)

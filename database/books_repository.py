@@ -15,5 +15,3 @@ def get_all():
             'author': book[4]
         })
     return list
-
-print(get_all())
