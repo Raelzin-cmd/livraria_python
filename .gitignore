@@ -1,0 +1,13 @@
+# Ambiente virtual
+.venv/
+venv/
+
+# Variáveis de ambiente
+.env
+
+# Dados persistidos do Postgres
+data/
+
+# Configurações locais
+__pycache__/
+*.pyc
