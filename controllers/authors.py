@@ -1,4 +1,7 @@
-from flask import make_response
+from flask import make_response, jsonify
+from database import authors_repository
 
-def test():
-    return make_response('Tudo certo')
+
+def authors():
+    authors = authors_repository.get_all()
+    return make_response(jsonify(authors))

@@ -3,7 +3,7 @@ from controllers import authors
 
 app = Flask(__name__)
 
-# Cria uma rota e importa função
-app.add_url_rule('/', view_func=authors.test)
+# Rota para lista autores       http://localhost:3000/author
+app.add_url_rule('/author', view_func=authors.authors)
 
 app.run(port=3000, debug=True)

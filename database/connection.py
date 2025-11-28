@@ -14,7 +14,3 @@ connection = psycopg.connect(
 
 # Testando a conexão
 cursor = connection.cursor()
-
-allBooks = cursor.execute('SELECT * FROM books')    # Selecionando todos os registros da tabela
-
-print(allBooks.fetchall())   # Trazendo todos os registros76
