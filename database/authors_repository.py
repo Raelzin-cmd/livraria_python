@@ -1,4 +1,4 @@
-from database.connection import cursor
+from database.connection import cursor, con
 
 def get_all():
     result = cursor.execute('SELECT * FROM authors')    # Selecionando todos os registros da tabela
@@ -12,3 +12,10 @@ def get_all():
             'name': author[1]
         })
     return list
+
+def register_author(name):
+    result = cursor.execute('INSERT INTO authors (name) VALUES (%s)', (name,)) # Previnindo SQL Injection
+    con.commit()
+    return result
+
+register_author('Lauren Kate')
