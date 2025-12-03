@@ -35,3 +35,9 @@ def find_author(id):
             'id': author[0],
             'name': author[1]
         }
+
+
+def edit_author(id, name):
+    cursor.execute('UPDATE authors SET name = %s WHERE id = %s', (name, id))
+    connect.commit()
+    return True
