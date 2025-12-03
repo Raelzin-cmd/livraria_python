@@ -23,4 +23,15 @@ def register_author(name):
             'name': author[1]
         }
 
-register_author('Fred Oliveira')
+
+def find_author(id):
+    result = cursor.execute('SELECT * FROM authors WHERE id = %s', (id,))
+    author = result.fetchone()
+    
+    if author == None:
+        return None
+    
+    return {
+            'id': author[0],
+            'name': author[1]
+        }

@@ -25,7 +25,7 @@ services:
 Beekeeper:
 
 ```sql
-CREATE DATABASE livraria;
+CREATE DATABASE library;
 
 -- GESTÃO DA LIVRARIA (id, name)
 CREATE TABLE authors(
