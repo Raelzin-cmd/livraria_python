@@ -1,16 +1,16 @@
-import os   # Importando variáveis de ambiente
-from dotenv import load_dotenv  # Importando a conexão das variáveis
-import psycopg  # Realizar a conexão com o banco de dados
+import os   # Import var
+from dotenv import load_dotenv  # Import connection var
+import psycopg  # Connection Database
 
-load_dotenv()   # Inicializando a conexão das variáveis de ambiente
+load_dotenv()   # Start var
 
-# Transformando em variáveis locais
+# Local var
 user = os.getenv('db_user') 
 pwd = os.getenv('db_pass')
 
-connection = psycopg.connect(
+connect = psycopg.connect(
     f'postgresql://{user}:{pwd}@localhost/library'
 )
 
-# Testando a conexão
-cursor = connection.cursor()
+# Testing connection
+cursor = connect.cursor()

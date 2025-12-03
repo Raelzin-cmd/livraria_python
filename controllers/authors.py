@@ -8,5 +8,5 @@ def authors():
 
 def register():
     body = request.get_json()
-    print(body)
-    return ''
+    author = authors_repository.register_author(body['name'])
+    return make_response(jsonify(author), 201)

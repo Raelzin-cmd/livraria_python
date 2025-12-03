@@ -1,12 +1,13 @@
-from database.connection import cursor, con
+from database.connection import cursor, connect
 
 def get_all():
-    result = cursor.execute('SELECT * FROM authors')    # Selecionando todos os registros da tabela
-    authors = result.fetchall() # Retornando todos os elementos selecionados
-    list = []   # Lista vazia
-    # Percorre toda a lista
+    result = cursor.execute('SELECT * FROM authors')    # Select all register of table
+    authors = result.fetchall() # Return all elements selected
+    
+    list = []
+    
+    # Run list
     for author in authors:
-        # Transformando a tupla em dicionário
         list.append({
             'id': author[0],
             'name': author[1]
@@ -14,8 +15,12 @@ def get_all():
     return list
 
 def register_author(name):
-    result = cursor.execute('INSERT INTO authors (name) VALUES (%s)', (name,)) # Previnindo SQL Injection
-    con.commit()
-    return result
+    result = cursor.execute('INSERT INTO authors (name) VALUES (%s) RETURNING *', (name,)) # Prevent SQL Injection
+    connect.commit()
+    author = result.fetchone()
+    return {
+            'id': author[0],
+            'name': author[1]
+        }
 
-register_author('Lauren Kate')
+register_author('Fred Oliveira')
