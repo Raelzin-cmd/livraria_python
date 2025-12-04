@@ -41,3 +41,9 @@ def edit_author(id, name):
     cursor.execute('UPDATE authors SET name = %s WHERE id = %s', (name, id))
     connect.commit()
     return True
+
+
+def delete_author(id):
+    cursor.execute('DELETE FROM authors WHERE id = %s', (id,))
+    connect.commit()
+    return True
