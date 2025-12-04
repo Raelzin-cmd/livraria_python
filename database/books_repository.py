@@ -1,4 +1,4 @@
-from database.connection import cursor
+from database.connection import cursor, connect
 
 def get_all():
     result = cursor.execute('SELECT * FROM books')    # Selecionando todos os registros da tabela
@@ -16,6 +16,19 @@ def get_all():
             'author': book[4]
         })
     return book_list
+
+
+def register_book(title, publisher, year, author_id):
+    result = cursor.execute('INSERT INTO books (title, publisher, year, author_id) VALUES (%s, %s, %s, %s) RETURNING *', (title, publisher, year, author_id)) # Prevent SQL Injection
+    connect.commit()
+    book = result.fetchone()
+    return {
+            'id': book[0],
+            'title': book[1],
+            'publisher': book[2],
+            'year': book[3],
+            'author': book[4]
+        }
 
 
 def find_author_books(author_id):
