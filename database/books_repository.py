@@ -62,3 +62,15 @@ def find_author_books(author_id):
             'author': book[4]
         })
     return book_list
+
+
+def edit_book(id, title, publisher, year, author_id):
+    cursor.execute('UPDATE books SET title = %s, publisher = %s, year = %s, author_id = %s WHERE id = %s', (title, publisher, year, author_id, id))
+    connect.commit()
+    return True
+
+
+def delete_book(id):
+    cursor.execute('DELETE FROM books WHERE id = %s', (id,))
+    connect.commit()
+    return True

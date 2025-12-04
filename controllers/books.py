@@ -6,6 +6,7 @@ def books():
     books = books_repository.get_all()
     return make_response(jsonify(books))
 
+
 def register_book():
     body = request.get_json()
     author = authors_repository.find_author(body['author_id'])
@@ -24,3 +25,30 @@ def find_book(id):
         return make_response({'message': 'Book not found'}, 404)
 
     return make_response(jsonify(book))
+
+
+def edit_book(id):
+    body = request.get_json()
+    
+    book = books_repository.find_book(id)
+    
+    if book == None:
+        return make_response({'message': 'Book not found'}, 404)
+    
+    author = authors_repository.find_author(body['author_id'])
+    
+    if author == None:
+        return make_response({'message': 'Author not found'}, 404)
+
+    books_repository.edit_book(id, body['title'], body['publisher'], body['year'], body['author_id'])
+    return make_response({}, 204)
+
+
+def delete_book(id):
+    book = books_repository.find_book(id)
+    
+    if book == None:
+        return make_response({'message': 'Book not found'}, 404)
+
+    books_repository.delete_book(id)
+    return make_response({}, 204)

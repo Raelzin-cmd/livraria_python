@@ -21,5 +21,9 @@ app.add_url_rule('/book', view_func=books.books)
 app.add_url_rule('/book', methods=['POST'], view_func=books.register_book)
 # Rota para Buscar Livro        http://localhost:3000/book/id
 app.add_url_rule('/book/<int:id>', view_func=books.find_book)
+# Rota para Editar Livro        http://localhost:3000/book/id
+app.add_url_rule('/book/<int:id>', methods=['PUT'], view_func=books.edit_book)
+# Rota para Excluir Livro       http://localhost:3000/book/id
+app.add_url_rule('/book/<int:id>', methods=['DELETE'], view_func=books.delete_book)
 
 app.run(port=3000, debug=True)
