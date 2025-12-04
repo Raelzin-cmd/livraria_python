@@ -15,3 +15,12 @@ def register_book():
     
     book = books_repository.register_book(body['title'], body['publisher'], body['year'], body['author_id'])
     return make_response(jsonify(book), 201)
+
+
+def find_book(id):
+    book = books_repository.find_book(id)
+    
+    if book == None:
+        return make_response({'message': 'Book not found'}, 404)
+
+    return make_response(jsonify(book))

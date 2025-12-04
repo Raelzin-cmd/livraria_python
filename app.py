@@ -19,5 +19,7 @@ app.add_url_rule('/author/<int:id>', methods=['DELETE'], view_func=authors.delet
 app.add_url_rule('/book', view_func=books.books)
 # Rota para Cadastrar Livros     http://localhost:3000/books
 app.add_url_rule('/book', methods=['POST'], view_func=books.register_book)
+# Rota para Buscar Livro        http://localhost:3000/book/id
+app.add_url_rule('/book/<int:id>', view_func=books.find_book)
 
 app.run(port=3000, debug=True)

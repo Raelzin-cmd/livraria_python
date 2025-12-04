@@ -31,6 +31,22 @@ def register_book(title, publisher, year, author_id):
         }
 
 
+def find_book(id):
+    result = cursor.execute('SELECT * FROM books WHERE id = %s', (id,))
+    book = result.fetchone()
+    
+    if book == None:
+        return None
+    
+    return {
+            'id': book[0],
+            'title': book[1],
+            'publisher': book[2],
+            'year': book[3],
+            'author': book[4]
+        }
+
+
 def find_author_books(author_id):
     result = cursor.execute('SELECT * FROM books WHERE author_id = %s', (author_id,))
     books = result.fetchall()
